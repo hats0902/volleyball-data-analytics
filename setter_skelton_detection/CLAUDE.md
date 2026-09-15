@@ -27,11 +27,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 「今回何をしたか」を記録する変更履歴。1作業＝1ファイル（既存ファイルへの追記はしない）。過去の経緯・意思決定の理由を追う場合はここを参照する。
 
-最新: [`.steering/20260907-hf-demo-fixes-and-next-plan.md`](.steering/20260907-hf-demo-fixes-and-next-plan.md)
+最新: [`.steering/20260909-analyst-scene-tool-final-direction.md`](.steering/20260909-analyst-scene-tool-final-direction.md)（1つ前: [`.steering/20260909-position-label-pilot.md`](.steering/20260909-position-label-pilot.md)、[`.steering/20260907-hf-demo-fixes-and-next-plan.md`](.steering/20260907-hf-demo-fixes-and-next-plan.md)）
 
 ### `plan.md`
 
-現在合意している次のイテレーション（データ拡張によるモデル改善）の具体的な作業手順と、検討して見送った代替案をまとめたもの。`docs/`ほど恒久的ではないが、直近の作業計画として`.steering/`より先に参照する。
+現在合意している次のイテレーション（多人数ファインチューニング＋アナリスト向け骨格抽出ツール）の具体的な作業手順と、検討して見送った代替案をまとめたもの。`docs/`ほど恒久的ではないが、直近の作業計画として`.steering/`より先に参照する。ブランチは`position-label-pilot`（名前は旧案のままだが中身はこの方針で作業中）。
 
 ## 開発プロセス
 
@@ -71,7 +71,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 既知の限界／次のデータ拡張方針
 
-現行モデルは「ボールが手を離れる瞬間（ジャンプ中）」のフレームのみで学習しており、動画でのテストで(1)非ジャンプ姿勢のセッターが検出されない、(2)セッターと紛らわしいポーズの他選手を誤検出することがある、という2つの課題が判明している。次のイテレーションの詳細（フレーム収集・ハードネガティブの追加・再学習・再デプロイの手順）は`plan.md`を参照。
+現行モデルは「ボールが手を離れる瞬間（ジャンプ中）」のフレームのみで学習しており、動画でのテストで(1)非ジャンプ姿勢のセッターが検出されない、(2)スパイカー・ブロッカー等セッター以外の選手のジャンプ・複雑な姿勢が正しく検出できない、という2つの課題が判明している。次のイテレーションでは、これらのフレームで写っている複数人（セッター以外も含む）を単一の`person`クラスとして正しくアノテーションし、多人数検出に対応する。詳細（フレーム収集・アノテーション・再学習・アナリスト向けツールの実装手順）は`plan.md`を参照。
 
 ## Annotation validation
 
